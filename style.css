@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+}
+header{
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Shadows Into Light', cursive;
+}
+main{
+    display: flex;
+    border: solid black;
+}
+#new_task{
+    margin: 30px;
+    width: 30vw;
+    height: 40vw;
+    border: solid black;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+label{
+    display: flex;
+}
+#task_Create{
+    display: flex;
+    margin: auto;
+    margin-top: 90%;
+    width: 70%;
+    justify-content: center;
+    padding: 3px;
+}
