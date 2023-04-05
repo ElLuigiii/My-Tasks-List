@@ -1,36 +1,203 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: antiquewhite;
+    box-sizing: border-box;
 }
-header{
+body{border: solid; 
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    background-image: url(board-2437443_1280.jpg);
+    flex-direction: column;
+    align-content: center;
+    color: white;
     font-family: 'Bebas Neue', cursive;
     font-family: 'Shadows Into Light', cursive;
 }
-main{
+header{
     display: flex;
-    border: solid black;
+    padding: 1%;
+    justify-content: center;
+    background-position: center;
+    filter: opacity(0.9) contrast(#4c66e1);
+}
+h1{
+    color: whitesmoke;
+    text-shadow: black 10px 10px 10px;
+    text-decoration: underline;
+    font-size: 3rem;
+}
+.tareas {
+    border: solid black 0.5px;
+    background-color: #3a683aab;
+    padding: 0px 25px;
+    margin: 4px;
+    border: double white 0.5px;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: nowrap; */
+   flex-wrap: nowrap;
+}
+
+.tareas:hover{
+    box-shadow: 0px 6px 15px 7px;
+    transition: all 500ms;
+}
+#div_Tasks {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    max-height: 75vh;
+    border: double 10px white;
+    border-radius: 10px;
+    overflow-y: auto;
+    margin-top: 32px;
+}
+/*********** aca empieza */
+#div_Tasks::-webkit-scrollbar {
+    width: 15px;
+    height: 1px;
+}
+.title_tasks{
+    border: double white;
+    font-size: 25px;
+    text-decoration: underline;
+    text-shadow: 10px 5px 5px black;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    background-color: rgb(25 175 201 / 28%);
+    text-align: center;
+    padding: 0px 20px;
+}
+#div_Tasks::-webkit-scrollbar-track {
+    background-clip: padding-box;
+    border: 2px solid grey;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    
+}
+ 
+#div_Tasks::-webkit-scrollbar-thumb {
+    background-color: rgba(58, 104, 58, 0.67);
+    border-radius: 30px;
+    padding: 10px;
+}
+
+#div_Tasks::-webkit-scrollbar-thumb:hover {
+    background-color: #3a683aef;
+}
+/*************** aca termina*********/
+#div_Tasks::-webkit-scrollbar{
+    width: 17px;
+    color:red;
+}
+h2{
+    color: whitesmoke;
+}
+.tareas p{
+    color: green
+}
+
+.content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+}
+main{
+align-items: center;
+height: 100%;
+margin: auto 0;
+align-content: center;
+justify-content: center;
 }
 #new_task{
     margin: 30px;
-    width: 30vw;
-    height: 40vw;
-    border: solid black;
-    align-items: center;
-    gap: 10px;
+    width: 35%;
+    height: 85%;
+    border: solid rgb(104, 103, 103) .5px;
+    text-align: center;
+    gap: 30px;
+    background-image:url(learning-3245792_1280.jpg);
+    filter: opacity(0.7);
     display: flex;
     flex-direction: column;
+    max-width: 350px;
+    border-radius: 10px;
+    border: double;
+}
+#new_task:hover{
+    box-shadow:-6px 3px 20px  rgb(25 175 201);
+    transition: all 150ms;
+}
+.div_title {
+    /* border: solid grey; */
+    background-color: rgb(25 175 201 / 28%);
+    display: flex;
+    /* box-shadow: -5px 0px 19px rgb(25 175 201); */
+    border-bottom: double;
+}
+#new_task input {
+    border-radius: 5px;
+    height: 30px;
+    width: 95%;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* align-items: flex-start; */
+    /* align-content: center; */
+}
+#formulario {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+#more_Task{
+    width: 40%;
+    padding: 2px;
+    height: 5vh;
+    display: flex;
+    margin: 5px;
+    color: whitesmoke;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: rgba(25, 175, 201, 0.89);
 }
 label{
+    font-size: 30px;
+    text-shadow: 1px 1px 1px rgb(25, 175, 201);
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.task_separate{
     display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-between;
+    align-items: center;
 }
 #task_Create{
+    width: 40%;
+    padding: 2px;
+    height: 5vh;
     display: flex;
-    margin: auto;
-    margin-top: 90%;
-    width: 70%;
+    margin: 5px;
+    color: whitesmoke;
+    font-size: 1rem;
     justify-content: center;
-    padding: 3px;
+    align-items: center;
+    background-color: rgba(25, 175, 201, 0.89);
+}
+#title_new_task {
+    margin: 0 auto;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-decoration: underline;
+    text-shadow: 2px 2px 2px rgb(0 216 251 / 42%);
+    font-weight: bold;
+    display: flex;
 }
