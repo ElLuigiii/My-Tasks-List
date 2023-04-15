@@ -4,14 +4,11 @@ console.log('hola estoy andando bien')
 class Tarea {
     constructor(titulo, tareas){
     this.titulo1 = titulo;
-    this.newTask1 = tareas
+    this.tareas = tareas
     this._taskList = []
     }
     get taskList(){
         return this._taskList
-    }
-    agregarTarea(nueva_tarea){
-        this._taskList.push(nueva_tarea)
     }
 }
 //how to make the div have scrollbar only if has too many elements?
@@ -36,13 +33,34 @@ btnAdd.addEventListener('click', function(){
 })
 
 let verArray = []
-function imprimirTareas(variable){
+function imprimirTareas(variable) {
     let hola = misTareas.map((elementox) => {
-        pizarra.innerHTML+=`<div class= "tareas"> <h2>${elementox.titulo1}</h2> <ul> <li>${elementox.newTask1}</li>
-        <li>${elementox._taskList}</li> </ul>`
-    })
+      let taskListItems = elementox._taskList.map((task) => {
+        if (task.trim() !== '') {
+          return `<li>${task}</li>`;
+        } else {
+          return '';
+        }
+      }).join('');
+  
+      // Comprobar si hay tareas o elementos en la lista de tareas antes de imprimir
+      if (elementox.tareas !== '' || taskListItems !== '') {
+        let html = `<div class="tareas"> <h2>${elementox.titulo1}</h2>`;
+  
+        if (elementox.tareas !== '') {
+          html += `<ul> <li>${elementox.tareas}</li></ul>`;
+        }
+  
+        if (taskListItems !== '') {
+          html += `<ul>${taskListItems}</ul>`;
+        }
+  
+        html += `</div>`;
+        pizarra.innerHTML += html;
+      }
+    });
+  }
 
-}
 
 const misTareas = []
 function crearListaTareas(var1, var2){
@@ -82,20 +100,25 @@ btnCreate.addEventListener('click',function (){
 })
 
 let lsd = JSON.parse(localStorage.getItem('misTasks'))
-function intentandoImprimir(){
-    if(lsd != null){
-        console.log('deberia imprimirse algo en tareas')
-        lsd.forEach((eleme =>{
-            let templateTasks = `<div class= "tareas"> <h2>${eleme.title}</h2> <p>${eleme._taskList}</p>
-            <p>${eleme._taskList}`
-            pizarra.innerHTML+=`<div class= "tareas"> <h2>${eleme.titulo1}</h2> <ul> <li>${eleme.newTask1}</li>
-            <li>${eleme._taskList}</li> </ul>`
-        }))
-    }else{
-        console.log('no hay niguna tarea en el local storage')
+function intentandoImprimir() {
+    let misTareas = JSON.parse(localStorage.getItem('misTasks'));
+    if (misTareas != null) {
+        misTareas.forEach((tarea) => {
+            let tareaHTML = document.createElement('div');
+            tareaHTML.classList.add('tareas');
+            let taskListItems = tarea._taskList.map((t) => `<li>${t}</li>`).join('');
+            tareaHTML.innerHTML = `
+                <h2>${tarea.titulo1}</h2>
+                <ul>
+                    ${tarea.tareas ? `<li>${tarea.tareas}</li>` : ''}
+                    ${taskListItems}
+                </ul>
+            `;
+            pizarra.appendChild(tareaHTML);
+        });
+    } else {
+        console.log('No hay ninguna tarea en el local storage');
     }
-    //how to make the div have scrollbar only if this has to many elements?
-
 }
 intentandoImprimir()
 

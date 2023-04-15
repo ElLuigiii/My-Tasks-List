@@ -92,10 +92,12 @@ btnCreate.addEventListener('click',function (){
     let myNewTasks= []
     myNewTasks= misTareas.map(function(elem){
         let objFinal= { titulo: elem.titulo1, tareas: elem.newTask1}
+        console.log(objFinal)
         return objFinal
     })
     imprimirTareas(myNewTasks)
-    setLocalStorage(misTareas)
+    console.log(myNewTasks)
+    setLocalStorage('hola')
     console.log(misTareas.taskList)
 })
 
