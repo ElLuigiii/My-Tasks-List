@@ -1,5 +1,4 @@
 console.log('hola estoy andando bien')
-//import Scrollbar from 'smooth-scrollbar';
 
 class Tarea {
     constructor(titulo, tareas){
@@ -11,14 +10,12 @@ class Tarea {
         return this._taskList
     }
 }
-//how to make the div have scrollbar only if has too many elements?
 
 const title = document.getElementById('task_Title')
 const task = document.getElementById('tasks')
 const btnCreate = document.getElementById('task_Create')
 const btnAdd = document.getElementById('more_Task')
 const pizarra = document.getElementById('div_Tasks')
-//Scrollbar.init(document.querySelector('.my-scrollbar'))
 
 let listaTemporal = []
 btnAdd.addEventListener('click', function(){
@@ -35,31 +32,68 @@ btnAdd.addEventListener('click', function(){
 let verArray = []
 function imprimirTareas(variable) {
     let hola = misTareas.map((elementox) => {
-      let taskListItems = elementox._taskList.map((task) => {
-        if (task.trim() !== '') {
-          return `<li>${task}</li>`;
-        } else {
-          return '';
+        let taskListItems = elementox._taskList.map((task) => {
+            if (task.trim() !== '') {
+                return `<li>${task}</li>`;
+            } else {
+                return '';
+            }
+        }).join('');
+
+        // Comprobar si hay tareas o elementos en la lista de tareas antes de imprimir
+        if (elementox.tareas !== '' || taskListItems !== '') {
+            let html = `<div class="tareas"> <h2>${elementox.titulo1}</h2>`;
+
+            if (elementox.tareas !== '') {
+                html += `<ul> <li>${elementox.tareas}</li></ul>`;
+            }
+
+            if (taskListItems !== '') {
+                html += `<ul>${taskListItems}</ul>`;
+            }
+
+            // Agregar botón "Agregar Tareas"
+            html += `<button class="btn-agregar" data-titulo="${elementox.titulo1}">Agregar Tareas</button>`;
+            html += `</div>`;
+            pizarra.innerHTML += html;
         }
-      }).join('');
-  
-      // Comprobar si hay tareas o elementos en la lista de tareas antes de imprimir
-      if (elementox.tareas !== '' || taskListItems !== '') {
-        let html = `<div class="tareas"> <h2>${elementox.titulo1}</h2>`;
-  
-        if (elementox.tareas !== '') {
-          html += `<ul> <li>${elementox.tareas}</li></ul>`;
-        }
-  
-        if (taskListItems !== '') {
-          html += `<ul>${taskListItems}</ul>`;
-        }
-  
-        html += `</div>`;
-        pizarra.innerHTML += html;
-      }
     });
-  }
+
+
+const btnAdd = document.getElementById('task_Add'); // Obtener referencia al botón "Agregar Tarea"
+btnAdd.addEventListener('click', function() {
+    event.preventDefault();
+
+    let task = document.getElementById('tasks').value; // Obtener el valor de la nueva tarea
+
+    if (!task || task == '') {
+        alert('Debe agregar una tarea');
+    } else {
+        let tareaActual = misTareas[misTareas.length - 1]; // Obtener la última tarea creada
+
+        if (tareaActual) {
+            tareaActual._taskList.push(task); // Agregar la nueva tarea a la lista de tareas de la última tarea creada
+            imprimirTareas(tareaActual); // Actualizar la vista con la nueva tarea agregada
+        }
+    }
+
+    document.getElementById('tasks').value = ''; // Limpiar el campo de entrada de tarea
+});
+
+    // Agregar evento de clic al botón "Agregar Tareas"
+    let btnsAgregar = document.getElementsByClassName('btn-agregar');
+    for (let i = 0; i < btnsAgregar.length; i++) {
+        btnsAgregar[i].addEventListener('click', function() {
+            let titulo = this.getAttribute('data-titulo');
+            let tarea = prompt(`Ingrese una nueva tarea para "${titulo}"`);
+            if (tarea && tarea !== '') {
+                let tareaExistente = misTareas.find(t => t.titulo1 === titulo);
+                tareaExistente._taskList.push(tarea);
+                imprimirTareas();
+            }
+        });
+    }
+}
 
 
 const misTareas = []
@@ -113,6 +147,7 @@ function intentandoImprimir() {
                     ${tarea.tareas ? `<li>${tarea.tareas}</li>` : ''}
                     ${taskListItems}
                 </ul>
+                <button class="btn-agregar" data-titulo="${tarea.titulo1}">Agregar Tareas</button>
             `;
             pizarra.appendChild(tareaHTML);
         });
