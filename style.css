@@ -210,3 +210,6 @@ label{
     font-weight: bold;
     display: flex;
 }
+.btn-agregar{
+    width: 30%;
+}
